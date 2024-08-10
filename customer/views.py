@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.shortcuts import render,redirect # type: ignore
+from django.contrib.auth import authenticate,login,logout # type: ignore
+from django.contrib.auth.models import User # type: ignore
+from django.http import HttpResponse # type: ignore
 from .models import *
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required # type: ignore
 
 
 def index(request):
