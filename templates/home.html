@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Money Earning Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f6f9;
+            color: #1a202c;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1a202c;
+        }
+
+        a:hover {
+            color: #38a169;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #2d3748;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links li:first-child {
+            margin-left: 0;
+        }
+
+        .nav-links li a {
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #4a5568;
+        }
+
+        .nav-links li a.button {
+            background-color: #38a169;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .nav-links li a.button:hover {
+            background-color: #2f855a;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background-color: #2d3748;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.5s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .nav-links.open {
+                left: 0;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        /* Main Content Styles */
+        main {
+            margin-top: 40px;
+        }
+
+        .content {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .user-info .username {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a202c;
+        }
+
+        .user-info .balance {
+            font-size: 1.25rem;
+            background-color: #38a169;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            max-width: 100%; /* Ensure balance stays within container */
+            margin: 20px auto; /* Center balance */
+        }
+
+        @media (max-width: 768px) {
+            .user-info {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+
+            .user-info .username {
+                margin-bottom: 10px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .user-info .balance {
+                width: auto;
+                max-width: 100%; /* Ensure balance div is responsive */
+                text-align: center;
+                margin: 0 auto; /* Center the balance div */
+            }
+        }
+
+        .options {
+            margin-top: 20px;
+        }
+
+        .options h3 {
+            color: #2d3748;
+        }
+
+        .options ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+        }
+
+        .options li a {
+            color: #1a202c;
+            padding: 8px 16px;
+            border: 1px solid #38a169;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .options li a:hover {
+            background-color: #38a169;
+            color: #ffffff;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2d3748;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer small {
+            color: #a0aec0;
+        }
+
+        footer small a {
+            color: #ffffff;
+            margin: 0 10px;
+        }
+
+        footer small a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Earnings Dashboard</div>
+            <ul class="nav-links">
+                <li><a href="{% url "liveWork" %}">Task</a></li>
+                <li><a href="{% url "withhistory" %}">Transaction history</a></li>
+                <li><a href="{% url "taskhistory" %}">Work History</a></li>
+                <li><a href="{% url "payout" %}">Wallet</a></li>
+                <li><a href="{% url "logout" %}" class="button">Logout</a></li>
+            </ul>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="content">
+            <section>
+                <div class="user-info">
+                    <div class="username">Welcome, {{username}}</div>
+                    <div class="balance">Balance: ₹ {{amount}}</div>
+                </div>
+
+                <div class="options">
+                    <h3>Options</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Monetize Your Traffic</a></li>
+                        <li><a href="{% url "logout" %}">Logout</a></li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

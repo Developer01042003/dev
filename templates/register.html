@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>RoyalUI Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static "vendors/ti-icons/css/themify-icons.css" %}">
+  <link rel="stylesheet" href="{% static "vendors/base/vendor.bundle.base.css" %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static "registercss/css/style.css" %}">
+  <!-- endinject -->
+  
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <img src="{% static "assets\images\logo.svg" %}" alt="logo">
+              </div>
+              <h4>New here?</h4>
+              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+              <form class="pt-3" method='post' action="{% url "regist" %}">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="upi" placeholder="Enter your upi">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                </div>
+                
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+                <div class="text-center mt-4 font-weight-light">
+                  Already have an account? <a href="{% url "login" %}" class="text-primary">Login</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static "vendors/base/vendor.bundle.base.js" %}"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="{% static "registercss/js/off-canvas.js" %}"></script>
+  <script src="{% static "registercss/js/hoverable-collapse.js" %}"></script>
+  <script src="{% static "registercss/js/template.js" %}"></script>
+  <script src="{% static "registercss/js/todolist.js" %}"></script>
+  <!-- endinject -->
+</body>
+
+</html>

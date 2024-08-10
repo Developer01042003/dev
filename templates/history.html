@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Withdrawal History</title>
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .status {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+        .completed {
+            background-color: green;
+        }
+        .pending {
+            background-color: orange;
+        }
+        .failed {
+            background-color: red;
+        }
+        .no-data {
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>My Account</strong></li>
+        </ul>
+        <ul>
+            <li><a href="{% url "profile" %}">Home</a></li>
+            
+        </ul>
+    </nav>
+    <main class="container">
+        <div class="grid">
+            <section>
+                <hgroup>
+                    <h2>Withdrawal History</h2>
+                    <h3>Your recent transactions</h3>
+                </hgroup>
+                <table role="grid">
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Date Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if get_data is not None %}
+                            {% for data in get_data %}
+                            <tr>
+                                <td>{{ data.amount }}</td>
+                                <td>{{ data.date_time }}</td>
+                                {% if data.is_verified and not data.is_rejected %}
+                                <td><span class="status completed">Completed</span></td>
+                                {% elif data.is_rejected %}
+                                <td><span class="status failed">Failed</span></td>
+                                {% else %}
+                                <td><span class="status pending">Pending</span></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3" class="no-data">No transactions available</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+    <footer class="container">
+        <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+    </footer>
+</body>
+</html>
