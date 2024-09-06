@@ -22,6 +22,7 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
     path('', include('customer.urls')), 
+ 
 
 
 ]

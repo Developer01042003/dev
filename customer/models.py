@@ -33,6 +33,7 @@ class LatestCamp(models.Model):
 class CampHistory(models.Model):
     _campID = models.CharField(max_length=1000,default="100000")
     id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    ip_address = models.CharField(max_length=200,default="none")
     email = models.EmailField(max_length=100,default="none")
     name = models.CharField(max_length=50)
     link = models.CharField(max_length=1000)

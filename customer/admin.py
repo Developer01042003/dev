@@ -12,8 +12,8 @@ class LatestCampAdmin(admin.ModelAdmin):
     search_fields = ('name', 'camp_secret', 'expire', 'link', 'terms_cond')
 
 class CampHistoryAdmin(admin.ModelAdmin):
-    list_display = ('_campID', 'email', 'name', 'is_verified', 'amount', 'date')
-    list_filter = ('email', 'is_verified')
+    list_display = ('_campID', 'email', 'name', 'is_verified', 'amount', 'date','ip_address')
+    list_filter = ('email', 'is_verified','date','ip_address')
     search_fields = ('_campID', 'email', 'name', 'link')
 
 
@@ -26,7 +26,7 @@ class CampHistoryAdmin(admin.ModelAdmin):
 
 class WithdrawHistoryAdmin(admin.ModelAdmin):
     list_display = ('email','amount', 'date_time', 'is_verified', 'is_cancel')
-    list_filter = ('is_verified', 'is_cancel')
+    list_filter = ('is_verified', 'is_cancel','date_time')
     search_fields = ('amount','email')
 
 admin.site.register(Persons, PersonsAdmin)

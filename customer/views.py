@@ -4,6 +4,8 @@ from django.contrib.auth.models import User # type: ignore
 from django.http import HttpResponse # type: ignore
 from .models import *
 from django.contrib.auth.decorators import login_required # type: ignore
+# type: ignore
+from ipware import get_client_ip
 
 
 def index(request):
@@ -39,6 +41,7 @@ def SignIn(request):
 
         user = authenticate(request,username=username,password=password)
         if user is not None:
+            
             login(request,user)
             return redirect('profile')
         else:
@@ -54,8 +57,13 @@ def newCamps(request):
 @login_required
 def handle_task_click(request, id):
     task = LatestCamp.objects.get(id=id)
+    client_ip, is_routable = get_client_ip(request)
+    if client_ip is None:
+        return HttpResponse(" Contact customer service ")
+    
+    else : 
 
-    if task:
+      if task:
         
         email = request.user.email
         
@@ -69,20 +77,26 @@ def handle_task_click(request, id):
         
         else:
             CampHistory.objects.create(
+        ip_address = client_ip,
         email = request.user.email,
         name = task.name,
         link = links,
         amount = task.amount,
         ),
             return redirect(links)
-    else:
+      else:
         
-        return HttpResponse("May be the campaign is closed!")
+         return HttpResponse("May be the campaign is closed!")
         
 
 @login_required 
 def redirectit(request,id):
-    if id:
+    client_ip, is_routable = get_client_ip(request) # type: ignore
+    if client_ip is None:
+        return HttpResponse(" Contact customer service ")
+    
+    else : 
+     if id:
         Camps = LatestCamp.objects.get(id=id)
 
 
@@ -92,6 +106,7 @@ def redirectit(request,id):
         if Camps:
             link = Camps.link
             CampHistory.objects.create(
+                p_address = client_ip,
                 email = request.user.email,
                 link = link,
                 amount=Camps.amount,
@@ -101,7 +116,7 @@ def redirectit(request,id):
         else:
             return HttpResponse("some error occured!")
         
-    else:
+     else:
         return HttpResponse("Some error occured !")
 
 

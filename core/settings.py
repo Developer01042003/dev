@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'customer',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -82,8 +85,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Vivek1231$Pankajbihar',  # Use your actual database name
+        'USER': 'Vivek1231',               # Your PythonAnywhere username
+        'PASSWORD': '$6RhP#SbA7ezuvp',          # The password for your MySQL database
+        'HOST': 'Vivek1231.mysql.pythonanywhere-services.com',  # Your MySQL host
+        'PORT': '3306',                       # MySQL port (default 3306)
     }
 }
 
@@ -128,3 +135,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRONJOBS = [
+    ('0 0 * * *', 'customer.management.commands.update_balances'),
+]
+
