@@ -61,4 +61,12 @@ class Withdraw_history(models.Model):
     is_verified = models.BooleanField(default=False)
     is_cancel = models.BooleanField(default=False)
 
+class Notice(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    is_verified = models.BooleanField(default=False)
+    is_cancel = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title

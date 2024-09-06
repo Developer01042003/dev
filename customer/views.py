@@ -246,8 +246,25 @@ def withhistory(request):
     
 
 
-               
+def customer_service(request):
+    telegram_link = "https://t.me/Publisher_support"
 
+    return redirect(telegram_link)
+               
+def Monetize_us(request):
+
+    form_link = "https://forms.gle/6rrJyPLkJSVsijet6"
+    return redirect(form_link)
+
+
+def payment_page(request):
+    pass
+
+
+
+def notice_board(request):
+    notices = Notice.objects.all().order_by('-created_at')  # Fetch all notices ordered by creation date
+    return render(request, 'notice.html', {'notices': notices})
                    
                    
 

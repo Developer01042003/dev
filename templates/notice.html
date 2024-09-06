@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice Board</title>
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <style>
+        .notice-card {
+            border: 1px solid #e0e0e0;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+        .notice-card h3 {
+            margin-top: 0;
+        }
+        .status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+        .verified {
+            background-color: green;
+        }
+        .cancelled {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Notice Board</strong></li>
+        </ul>
+        <ul>
+            <li><a href="{% url "profile" %}">Home</a></li>
+            
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="grid">
+            <section>
+                <hgroup>
+                    <h2>Notice Board</h2>
+                    <h3>Latest Notices</h3>
+                </hgroup>
+                
+                {% for notice in notices %}
+                <div class="notice-card">
+                    <h3>{{ notice.title }}</h3>
+                    <p>{{ notice.content }}</p>
+                    <small>Posted on: {{ notice.created_at|date:"F j, Y, g:i a" }}</small>
+                    <br>
+                    {% if notice.is_verified and not notice.is_cancel %}
+                        <span class="status verified">Verified</span>
+                    {% elif notice.is_cancel %}
+                        <span class="status cancelled">Cancelled</span>
+                    {% else %}
+                        <span class="status">Pending Verification</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+    </main>
+
+    <footer class="container">
+        <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+    </footer>
+</body>
+</html>

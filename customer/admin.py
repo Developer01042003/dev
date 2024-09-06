@@ -34,4 +34,4 @@ admin.site.register(LatestCamp, LatestCampAdmin)
 admin.site.register(CampHistory, CampHistoryAdmin)
 admin.site.register(Withdraw_history, WithdrawHistoryAdmin)
 
-#admin.site.register(PaymentDetails, PaymentDetailsAdmin)
+admin.site.register(Notice)

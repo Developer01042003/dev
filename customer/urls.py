@@ -17,10 +17,24 @@ urlpatterns = [
     path('profile/',views.profile,name="profile"),
     path('withhistory/',views.withhistory,name='withhistory'),
     path('payout/',views.payout,name='payout'), #payout page
-    path('withdrawb/',views.withdraw_balance,name='withdraw_balance'),
     path('task-work/',views.task_record,name="taskhistory"),
 
     #htmx= payment detail update ,
+    path('withdrawb/',views.withdraw_balance,name='withdraw_balance'),
+
+    #support contact
+    path('contact_us/',views.customer_service,name='contact_us'),
+
+    #bulk work
+    path('monetize/',views.Monetize_us,name='monetize'),
+
+    #admin work
+    path('payuz_work/',views.payment_page,name='paymentpage'),
+
+    #notice page 
+    path('notices/', views.notice_board, name='notice_board'),
+
+
 
 
 

@@ -249,8 +249,9 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">Earnings Dashboard</div>
+            <div class="logo">Dashboard</div>
             <ul class="nav-links">
+                <li><a href="{% url "notice_board" %}">Latest Notice</a></li>
                 <li><a href="{% url "liveWork" %}">Task</a></li>
                 <li><a href="{% url "withhistory" %}">Transaction history</a></li>
                 <li><a href="{% url "taskhistory" %}">Work History</a></li>
@@ -277,8 +278,8 @@
                 <div class="options">
                     <h3>Options</h3>
                     <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Monetize Your Traffic</a></li>
+                        <li><a href="{% url "contact_us" %}">Contact Us</a></li>
+                        <li><a href="{% url "monetize" %}">Monetize Your Traffic</a></li>
                         <li><a href="{% url "logout" %}">Logout</a></li>
                     </ul>
                 </div>
